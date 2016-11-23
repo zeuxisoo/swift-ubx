@@ -9,7 +9,7 @@ usage:
 init:
 	@swift package SwiftUbx
 
-deps: clean-deps
+deps:
 	@swift package fetch
 
 build: deps

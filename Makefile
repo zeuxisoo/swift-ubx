@@ -9,17 +9,20 @@ usage:
 init:
 	@swift package SwiftUbx
 
-deps:
+deps: clean-deps
 	@swift package fetch
 
-build:
+build: deps
 	@swift build
 
 run: build
 	@.build/debug/Application
 
-clean:
+clean-deps:
+	@rm -rf Packages
+
+clean: clean-deps
 	@rm -rf .build
 
-release: clean
+release: clean deps
 	@swift build -c release

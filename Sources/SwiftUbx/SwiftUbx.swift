@@ -1,4 +1,3 @@
-import Foundation
 import Just
 import SwiftyJSON
 
@@ -37,7 +36,7 @@ public class SwiftUbx {
 
     public func fetchPerformanceList(pageNo: Int, perPage: Int = 10) -> Dictionary<String, Any> {
         let eventId   = self.eventId
-        let timestamp = Int(NSDate().timeIntervalSince1970)
+        let timestamp = self.timestamp()
         let targetURL = "https://ticket.urbtix.hk/internet/json/event/\(eventId)/performance/\(perPage)/\(pageNo)/perf.json?locale=zh_TW&\(timestamp)"
 
         let response = self.agent.get(targetURL)

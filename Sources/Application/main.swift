@@ -1,3 +1,4 @@
+import Foundation
 import SwiftyJSON
 import SwiftUbx
 
@@ -17,7 +18,9 @@ if (auth["code"] == "200" && auth["cookie"] != "") {
             let date   = performance["performanceDateTime"]
             let status = status[Int(index)!]
 
-            print("\(name) - \(date) - \(status)")
+            let formattedDate = NSDate(timeIntervalSince1970: date.double!/1000)
+
+            print("\(name) - \(formattedDate) - \(status)")
         }
     }
 }

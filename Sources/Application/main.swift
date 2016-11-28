@@ -24,4 +24,3 @@ if (auth["code"] == "200" && auth["cookie"] != "") {
         }
     }
 }
-

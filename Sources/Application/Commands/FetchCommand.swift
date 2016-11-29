@@ -1,26 +1,22 @@
-import SwiftCLI
 import SwiftyJSON
-
 import SwiftUbx
 
-class FetchCommand: OptionCommand {
+class FetchCommand {
 
-    public let name = "fetch"
-    public let signature = "<event_id>"
-    public let shortDescription = "Fetch target event by event id"
+    private var eventId = 0
+    private var pageNo  = 1
 
-    public func setupOptions(options: OptionRegistry) {
-
+    public init(_ event: Int, page: Int = 1) {
+        self.eventId = event
+        self.pageNo  = page
     }
 
-    public func execute(arguments: CommandArguments) throws  {
-        let eventId = arguments.requiredArgument("event_id")
-
-        let ubx  = SwiftUbx(eventId: Int(eventId)!)
+    public func execute()  {
+        let ubx  = SwiftUbx(eventId: self.eventId)
         let auth = ubx.fetchAuth()
 
         if (auth["code"] == "200" && auth["cookie"] != "") {
-            let performanceList = ubx.fetchPerformanceList(pageNo: 1)
+            let performanceList = ubx.fetchPerformanceList(pageNo: self.pageNo)
 
             let code         = performanceList["code"] as! String
             let performances = performanceList["performances"] as! JSON

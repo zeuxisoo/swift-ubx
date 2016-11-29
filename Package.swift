@@ -13,6 +13,6 @@ let package = Package(
         .Package(url: "https://github.com/JustHTTP/Just.git", majorVersion: 0, minor: 5),
         .Package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git",  majorVersion: 3),
         .Package(url: "https://github.com/malcommac/SwiftDate.git", majorVersion: 4),
-        .Package(url: "https://github.com/jakeheis/SwiftCLI", majorVersion: 2, minor: 0)
+        .Package(url: "https://github.com/kylef/Commander.git", majorVersion:0, minor: 6),
     ]
 )

@@ -1,10 +1,15 @@
 import Foundation
-import SwiftCLI
+import Commander
 
-CLI.setup(name: "SwiftUbx", version: "1.0", description: "SwiftUbx - fetch your event list by event id")
+Group {
 
-CLI.register(command: FetchCommand())
+    $0.command(
+        "fetch",
+        Argument<Int>("event", description: "The event id"),
+        Option("page", 1, description: "The default page number"),
+        description: "Fetch event list by event id"
+    ) { event, page in
+        FetchCommand(event, page: page).execute()
+    }
 
-if CLI.go() == 1 {
-    exit(0)
-}
+}.run()

@@ -5,10 +5,12 @@ class FetchCommand {
 
     private var eventId = 0
     private var pageNo  = 1
+    private var perPage = 10
 
-    public init(_ event: Int, page: Int = 1) {
+    public init(_ event: Int, page: Int = 1, record: Int = 10) {
         self.eventId = event
         self.pageNo  = page
+        self.perPage = record
     }
 
     public func execute()  {
@@ -16,7 +18,7 @@ class FetchCommand {
         let auth = ubx.fetchAuth()
 
         if (auth["code"] == "200" && auth["cookie"] != "") {
-            let performanceList = ubx.fetchPerformanceList(pageNo: self.pageNo)
+            let performanceList = ubx.fetchPerformanceList(pageNo: self.pageNo, perPage: self.perPage)
 
             let code         = performanceList["code"] as! String
             let performances = performanceList["performances"] as! JSON

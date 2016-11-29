@@ -1,26 +1,10 @@
 import Foundation
-import SwiftyJSON
-import SwiftUbx
+import SwiftCLI
 
-let ubx  = SwiftUbx(eventId: 30924)
-let auth = ubx.fetchAuth()
+CLI.setup(name: "SwiftUbx", version: "1.0", description: "SwiftUbx - fetch your event list by event id")
 
-if (auth["code"] == "200" && auth["cookie"] != "") {
-    let performanceList = ubx.fetchPerformanceList(pageNo: 1)
+CLI.register(command: FetchCommand())
 
-    let code         = performanceList["code"] as! String
-    let performances = performanceList["performances"] as! JSON
-    let status       = performanceList["status"] as! JSON
-
-    if code == "200" {
-        for (index, performance) in performances {
-            let name   = performance["performanceName"]
-            let date   = performance["performanceDateTime"]
-            let status = status[Int(index)!]
-
-            let formattedDate = ubx.formatDate(date.double!)
-
-            print("\(name) - \(formattedDate) - \(status)")
-        }
-    }
+if CLI.go() == 1 {
+    exit(0)
 }

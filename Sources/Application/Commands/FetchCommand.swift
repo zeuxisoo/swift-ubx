@@ -1,7 +1,7 @@
 import SwiftyJSON
 import SwiftUbx
 
-class FetchCommand {
+class FetchCommand: CommandProtocol {
 
     private var eventId = 0
     private var pageNo  = 1

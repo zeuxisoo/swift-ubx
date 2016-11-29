@@ -7,7 +7,8 @@ public class SwiftUbx {
     private var agent   = JustOf<HTTP>()
 
     public init(eventId: Int) {
-        let agent = JustOf<HTTP>(
+        self.eventId = eventId
+        self.agent   = JustOf<HTTP>(
             defaults: JustSessionDefaults(
                 headers:  [
                     "Accept"         : "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -17,9 +18,6 @@ public class SwiftUbx {
                 ]
             )
         )
-
-        self.eventId = eventId
-        self.agent   = agent
     }
 
     public func fetchAuth() -> [String:String] {

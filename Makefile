@@ -1,10 +1,14 @@
 usage:
-	@echo "make init"
-	@echo "make deps"
-	@echo "make build"
-	@echo "make run"
-	@echo "make clean"
-	@echo "make release"
+	@echo
+	@echo "Commands     : Description"
+	@echo "------------ : -------------"
+	@echo "make init    : Initial project when first start"
+	@echo "make deps    : Install the dependencies / packages"
+	@echo "make build   : Build the application to executable file"
+	@echo "make run     : Run the built executable file"
+	@echo "make clean   : Clean the build file"
+	@echo "make release : Generate the release file"
+	@echo
 
 init:
 	@swift package SwiftUbx
